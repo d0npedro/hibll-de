@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# hibll.de – Hilfe in besonderen Lebenslagen
 
-## Getting Started
+Eine ruhige, empathische Webanwendung für Menschen in Deutschland, die in schwierigen Lebenssituationen konkrete nächste Schritte und Hilfsangebote suchen.
 
-First, run the development server:
+## Produktversprechen
+
+> Du bist nicht allein. Wir zeigen dir konkrete Schritte.
+
+## Tech-Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Sprache:** TypeScript
+- **Styling:** Tailwind CSS v4
+- **Komponenten:** shadcn/ui + lucide-react
+- **State/Persistenz:** localStorage (kein Backend, kein Auth)
+
+## Lokale Entwicklung
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Öffne [http://localhost:3000](http://localhost:3000) im Browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build & Deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build     # Produktions-Build
+npm start         # Produktions-Server lokal
 
-## Learn More
+# Deploy zu Vercel (empfohlen):
+vercel deploy --prod
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Hinweise für Betreiber
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Vor dem produktiven Betrieb unbedingt:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Impressum** (`/impressum`): Echte Betreiberangaben eintragen
+2. **Datenschutz** (`/datenschutz`): Rechtlich geprüfte Datenschutzerklärung ergänzen
+3. **Barrierefreiheit** (`/barrierefreiheit`): Erklärung vervollständigen
+4. **Notfallnummern prüfen**: Alle `tel:` Links auf Aktualität prüfen
+5. **Externe Links**: Alle Links auf externe Beratungsstellen regelmäßig prüfen
+6. **Kein echtes Backend**: Alle Daten sind statisch. Für echte Inhalte CMS integrieren.
 
-## Deploy on Vercel
+## Struktur
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+app/             # Next.js App Router Seiten
+components/      # Wiederverwendbare React-Komponenten
+data/            # Statische Datendateien (Kategorien, Flows, Angebote)
+lib/             # Utilities (localStorage, etc.)
+```

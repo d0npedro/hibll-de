@@ -11,7 +11,10 @@
       "Bash(cp -r /c/Users/info/Documents/Projects/hibll2/app /c/Users/info/Documents/Projects/hibll/ && cp -r /c/Users/info/Documents/Projects/hibll2/public /c/Users/info/Documents/Projects/hibll/ && cp /c/Users/info/Documents/Projects/hibll2/package-lock.json /c/Users/info/Documents/Projects/hibll/ && echo \"done\")",
       "Bash(ls /c/Users/info/Documents/Projects/hibll/*.ts /c/Users/info/Documents/Projects/hibll/*.mjs 2>/dev/null)",
       "Bash(npm install:*)",
-      "Bash(npx shadcn@latest init --yes --defaults 2>&1 | tail -20 || echo \"shadcn init failed, continuing\")"
+      "Bash(npx shadcn@latest init --yes --defaults 2>&1 | tail -20 || echo \"shadcn init failed, continuing\")",
+      "Bash(npx shadcn@latest add button card badge dialog input 2>&1 | tail -20)",
+      "Bash(npm run:*)",
+      "Bash(git init:*)"
     ]
   }
 }
