@@ -45,40 +45,53 @@ export default function StepCard({ step, flowSlug }: Props) {
   const isTel = step.action?.href.startsWith("tel:");
 
   return (
-    <div className={`group flex items-start gap-3 p-4 rounded-2xl border-2 transition-all ${
-      checked
-        ? "bg-green-50 border-green-200"
-        : "bg-white border-slate-100 hover:border-slate-200"
-    }`}>
+    <div
+      className="flex items-start gap-3 p-4 rounded-xl transition-all duration-200"
+      style={checked
+        ? { background: "var(--forest-50)", border: "1.5px solid var(--forest-200)" }
+        : { background: "#ffffff", border: "1.5px solid var(--forest-200)", boxShadow: "var(--shadow-warm-sm)" }
+      }
+    >
+      {/* Checkbox */}
       <button
         onClick={handleCheck}
-        className={`flex-shrink-0 mt-0.5 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 ${
+        className={`check-btn${checked ? " is-checked" : ""}`}
+        aria-label={
           checked
-            ? "bg-green-500 border-green-500 text-white"
-            : "border-slate-300 hover:border-green-400"
-        }`}
-        aria-label={checked ? `${step.title} als erledigt markiert – klicken zum Zurücksetzen` : `${step.title} als erledigt markieren`}
+            ? `${step.title} als erledigt markiert – klicken zum Zurücksetzen`
+            : `${step.title} als erledigt markieren`
+        }
         aria-pressed={checked}
       >
         {checked && (
-          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3} aria-hidden="true">
+          <svg className="h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3.5} aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         )}
       </button>
+
+      {/* Content */}
       <div className="flex-1 min-w-0">
-        <p className={`font-medium text-sm leading-snug ${checked ? "line-through text-slate-400" : "text-slate-800"}`}>
+        <p
+          className="font-medium text-sm leading-snug"
+          style={checked
+            ? { textDecoration: "line-through", color: "var(--forest-400)" }
+            : { color: "var(--forest-800)" }
+          }
+        >
           {step.title}
         </p>
-        {step.description && (
-          <p className="text-slate-500 text-xs mt-1 leading-relaxed">{step.description}</p>
+        {step.description && !checked && (
+          <p className="text-xs mt-1 leading-relaxed" style={{ color: "var(--forest-500)" }}>
+            {step.description}
+          </p>
         )}
-        {step.action && (
+        {step.action && !checked && (
           <a
             href={step.action.href}
             target={isTel ? undefined : "_blank"}
             rel={isTel ? undefined : "noopener noreferrer"}
-            className="inline-flex items-center gap-1.5 mt-2 text-xs font-medium text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-2.5 py-1.5 rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2"
+            className="step-action"
           >
             {isTel
               ? <Phone className="h-3 w-3" aria-hidden="true" />
@@ -88,15 +101,17 @@ export default function StepCard({ step, flowSlug }: Props) {
           </a>
         )}
       </div>
+
+      {/* Bookmark */}
       <button
         onClick={handleBookmark}
-        className="flex-shrink-0 p-1.5 rounded-lg hover:bg-slate-100 transition-colors focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2"
+        className={`bookmark-btn${bookmarked ? " is-active" : ""}`}
         aria-label={bookmarked ? `${step.title} aus der Merkliste entfernen` : `${step.title} zur Merkliste hinzufügen`}
         aria-pressed={bookmarked}
       >
         {bookmarked
-          ? <BookmarkCheck className="h-4 w-4 text-blue-500" aria-hidden="true" />
-          : <Bookmark className="h-4 w-4 text-slate-300 hover:text-blue-400" aria-hidden="true" />
+          ? <BookmarkCheck className="h-4 w-4" aria-hidden="true" />
+          : <Bookmark className="h-4 w-4" aria-hidden="true" />
         }
       </button>
     </div>

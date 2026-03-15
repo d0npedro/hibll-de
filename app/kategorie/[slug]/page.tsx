@@ -23,22 +23,38 @@ export default async function KategoriePage({ params }: { params: Promise<{ slug
     <div className="max-w-2xl mx-auto px-4 py-8">
       <Link
         href="/"
-        className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-blue-600 mb-6 transition-colors focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 rounded-sm"
+        className="back-link inline-flex items-center gap-1.5 text-xs font-medium mb-8 focus-visible:outline-none"
       >
-        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-        Zurück
+        <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+        Zurück zur Übersicht
       </Link>
 
       <header className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-800 mb-3">{category.title}</h1>
-        <p className="text-slate-600 leading-relaxed">
+        <h1
+          className="text-2xl sm:text-3xl font-semibold leading-tight mb-3"
+          style={{ color: "var(--forest-900)" }}
+        >
+          {category.title}
+        </h1>
+        <p
+          className="text-sm leading-relaxed italic"
+          style={{
+            color: "var(--forest-600)",
+            fontFamily: "var(--font-lora, 'Lora'), Georgia, serif",
+          }}
+        >
           Du bist nicht allein. Hier sind erste Schritte und Hilfsangebote.
         </p>
       </header>
 
       {flows.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-base font-semibold text-slate-700 mb-4">Schritt-für-Schritt-Wege</h2>
+          <h2
+            className="text-xs font-semibold uppercase tracking-wider mb-4"
+            style={{ color: "var(--forest-500)", letterSpacing: "0.08em" }}
+          >
+            Schritt-für-Schritt-Wege
+          </h2>
           <div className="space-y-3">
             {flows.map((flow) => (
               <HelpCard
@@ -55,7 +71,12 @@ export default async function KategoriePage({ params }: { params: Promise<{ slug
 
       {offers.length > 0 && (
         <section className="mb-8">
-          <h2 className="text-base font-semibold text-slate-700 mb-4">Hilfsangebote & Hotlines</h2>
+          <h2
+            className="text-xs font-semibold uppercase tracking-wider mb-4"
+            style={{ color: "var(--forest-500)", letterSpacing: "0.08em" }}
+          >
+            Hilfsangebote &amp; Hotlines
+          </h2>
           <div className="space-y-3">
             {offers.map((offer) => (
               <HotlineCard key={offer.id} offer={offer} />
@@ -65,9 +86,11 @@ export default async function KategoriePage({ params }: { params: Promise<{ slug
       )}
 
       {flows.length === 0 && offers.length === 0 && (
-        <div className="text-center py-12">
-          <p className="text-slate-500">Für dieses Thema werden gerade Inhalte vorbereitet.</p>
-          <p className="text-slate-400 text-sm mt-2">
+        <div className="text-center py-16">
+          <p className="text-sm" style={{ color: "var(--forest-500)" }}>
+            Für dieses Thema werden gerade Inhalte vorbereitet.
+          </p>
+          <p className="text-xs mt-2" style={{ color: "var(--forest-400)" }}>
             Nutze den Button „Soforthilfe" für sofortige Unterstützung.
           </p>
         </div>

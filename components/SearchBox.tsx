@@ -36,7 +36,7 @@ export default function SearchBox() {
       if (
         flow.title.toLowerCase().includes(q) ||
         flow.description.toLowerCase().includes(q) ||
-        flow.sections.some(s => s.steps.some(step => step.title.toLowerCase().includes(q)))
+        flow.sections.some((s) => s.steps.some((step) => step.title.toLowerCase().includes(q)))
       ) {
         out.push({ title: flow.title, href: `/flow/${flow.slug}`, type: "Weg", match: flow.description });
       }
@@ -54,13 +54,17 @@ export default function SearchBox() {
     <div className="relative w-full max-w-xl mx-auto">
       <form onSubmit={handleSubmit} role="search" aria-label="Hilfe suchen">
         <div className="relative">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" aria-hidden="true" />
+          <Search
+            className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 pointer-events-none"
+            style={{ color: "var(--forest-400)" }}
+            aria-hidden="true"
+          />
           <input
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Ich brauche Hilfe bei…"
-            className="w-full pl-12 pr-12 py-4 text-base bg-white border-2 border-slate-200 focus:border-blue-400 rounded-2xl outline-none transition-colors placeholder:text-slate-400 shadow-sm"
+            className="search-input"
             aria-label="Suchbegriff eingeben"
             aria-autocomplete="list"
             aria-controls={results.length > 0 ? "search-results" : undefined}
@@ -70,35 +74,60 @@ export default function SearchBox() {
             <button
               type="button"
               onClick={() => setQuery("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-slate-100 transition-colors focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-1"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-1.5 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2"
+              style={{
+                color: "var(--forest-400)",
+                ["--tw-ring-color" as string]: "var(--amber)",
+              }}
               aria-label="Suche löschen"
             >
-              <X className="h-4 w-4 text-slate-400" aria-hidden="true" />
+              <X className="h-3.5 w-3.5" aria-hidden="true" />
             </button>
           )}
         </div>
       </form>
+
       {results.length > 0 && (
         <ul
           id="search-results"
           role="listbox"
           aria-label="Suchergebnisse"
-          className="absolute top-full left-0 right-0 mt-2 bg-white border-2 border-slate-200 rounded-2xl shadow-lg overflow-hidden z-30"
+          className="absolute top-full left-0 right-0 mt-2 bg-white overflow-hidden z-30 animate-fade-in"
+          style={{
+            border: "1.5px solid var(--forest-200)",
+            borderRadius: "1rem",
+            boxShadow: "var(--shadow-warm-lg)",
+          }}
         >
           {results.map((result) => (
             <li key={result.href} role="option" aria-selected={false}>
               <Link
                 href={result.href}
                 onClick={() => setQuery("")}
-                className="flex flex-col gap-0.5 px-4 py-3 hover:bg-blue-50 transition-colors border-b border-slate-100 last:border-0 focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-0"
+                className="search-result-item flex flex-col gap-0.5 px-4 py-3 border-b last:border-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset"
+                style={{
+                  borderColor: "var(--forest-150)",
+                  ["--tw-ring-color" as string]: "var(--amber)",
+                }}
               >
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">
+                  <span
+                    className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full"
+                    style={{
+                      background: "var(--forest-100)",
+                      color: "var(--forest-600)",
+                      letterSpacing: "0.06em",
+                    }}
+                  >
                     {result.type}
                   </span>
-                  <span className="font-medium text-sm text-slate-800">{result.title}</span>
+                  <span className="font-semibold text-sm" style={{ color: "var(--forest-800)" }}>
+                    {result.title}
+                  </span>
                 </div>
-                <span className="text-xs text-slate-500 line-clamp-1">{result.match}</span>
+                <span className="text-xs line-clamp-1 pl-14" style={{ color: "var(--forest-500)" }}>
+                  {result.match}
+                </span>
               </Link>
             </li>
           ))}

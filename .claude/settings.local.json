@@ -14,7 +14,15 @@
       "Bash(npx shadcn@latest init --yes --defaults 2>&1 | tail -20 || echo \"shadcn init failed, continuing\")",
       "Bash(npx shadcn@latest add button card badge dialog input 2>&1 | tail -20)",
       "Bash(npm run:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(git commit:*)",
+      "mcp__claude_ai_Vercel__deploy_to_vercel",
+      "Bash(which vercel:*)",
+      "Bash(vercel --prod --yes 2>&1)",
+      "mcp__claude_ai_Vercel__list_projects",
+      "mcp__claude_ai_Vercel__list_teams",
+      "mcp__claude_ai_Vercel__list_deployments",
+      "Bash(git add:*)"
     ]
   }
 }

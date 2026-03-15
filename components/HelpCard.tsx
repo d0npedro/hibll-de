@@ -12,20 +12,42 @@ export default function HelpCard({ title, description, href, tag }: Props) {
   return (
     <Link
       href={href}
-      className="group flex items-start gap-4 p-4 bg-white border-2 border-slate-100 hover:border-blue-300 rounded-2xl shadow-sm hover:shadow-md transition-all focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2"
+      className="card-link card-link-left group flex items-start gap-4 p-4 sm:p-5 focus-visible:outline-none"
     >
       <div className="flex-1 min-w-0">
         {tag && (
-          <span className="inline-block text-xs font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full mb-2">
+          <span
+            className="inline-block text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full mb-2"
+            style={{
+              background: "var(--forest-100)",
+              color: "var(--forest-600)",
+              letterSpacing: "0.07em",
+            }}
+          >
             {tag}
           </span>
         )}
-        <h3 className="font-semibold text-slate-800 text-sm leading-snug group-hover:text-blue-700 transition-colors">
+        <h3
+          className="font-semibold text-sm leading-snug mb-1"
+          style={{
+            color: "var(--forest-800)",
+            fontFamily: "var(--font-lora, 'Lora'), Georgia, serif",
+          }}
+        >
           {title}
         </h3>
-        <p className="text-slate-500 text-xs mt-1 leading-relaxed">{description}</p>
+        <p className="text-xs leading-relaxed" style={{ color: "var(--forest-500)" }}>
+          {description}
+        </p>
       </div>
-      <ArrowRight className="h-4 w-4 text-slate-300 group-hover:text-blue-500 transition-colors flex-shrink-0 mt-0.5" aria-hidden="true" />
+
+      <div
+        className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-transform group-hover:translate-x-1"
+        style={{ background: "var(--forest-50)" }}
+        aria-hidden="true"
+      >
+        <ArrowRight className="h-3.5 w-3.5" style={{ color: "var(--forest-500)" }} />
+      </div>
     </Link>
   );
 }

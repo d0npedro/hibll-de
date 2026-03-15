@@ -5,11 +5,17 @@ import SoforthilfeDrawer from "./SoforthilfeDrawer";
 
 export default function SoforthilfeButton() {
   const [open, setOpen] = useState(false);
+
   return (
     <>
       <button
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-4 sm:bottom-8 sm:right-8 z-50 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg flex items-center gap-2 px-4 py-3 sm:px-5 sm:py-4 font-semibold text-sm transition-colors focus-visible:outline-4 focus-visible:outline-red-400 focus-visible:outline-offset-2"
+        className="sos-float-btn animate-sos-pulse fixed bottom-6 right-4 sm:bottom-8 sm:right-8 z-50 flex items-center gap-2 font-semibold text-sm text-white rounded-full"
+        style={{
+          paddingInline: "1.125rem",
+          paddingBlock: "0.75rem",
+          boxShadow: "0 4px 20px rgba(176,58,46,0.4)",
+        }}
         aria-label="Soforthilfe öffnen"
       >
         <Phone className="h-4 w-4" aria-hidden="true" />

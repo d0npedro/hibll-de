@@ -1,48 +1,63 @@
 import Link from "next/link";
-import { Heart, Shield, Wallet, Home, Baby, Calendar, Globe, Briefcase, Scale } from "lucide-react";
+import {
+  Heart, Shield, Wallet, Home, Baby, Calendar, Globe, Briefcase, Scale,
+} from "lucide-react";
 import type { Category } from "@/data/categories";
 
 const ICON_MAP: Record<string, React.ElementType> = {
-  heart: Heart,
-  shield: Shield,
-  wallet: Wallet,
-  home: Home,
-  baby: Baby,
-  calendar: Calendar,
-  globe: Globe,
-  briefcase: Briefcase,
-  scale: Scale,
+  heart: Heart, shield: Shield, wallet: Wallet, home: Home,
+  baby: Baby, calendar: Calendar, globe: Globe, briefcase: Briefcase, scale: Scale,
 };
 
-const COLOR_MAP: Record<string, { bg: string; icon: string; border: string }> = {
-  heart: { bg: "bg-rose-50", icon: "text-rose-500", border: "hover:border-rose-300" },
-  shield: { bg: "bg-orange-50", icon: "text-orange-500", border: "hover:border-orange-300" },
-  wallet: { bg: "bg-amber-50", icon: "text-amber-500", border: "hover:border-amber-300" },
-  home: { bg: "bg-sky-50", icon: "text-sky-500", border: "hover:border-sky-300" },
-  baby: { bg: "bg-pink-50", icon: "text-pink-500", border: "hover:border-pink-300" },
-  calendar: { bg: "bg-purple-50", icon: "text-purple-500", border: "hover:border-purple-300" },
-  globe: { bg: "bg-teal-50", icon: "text-teal-500", border: "hover:border-teal-300" },
-  briefcase: { bg: "bg-blue-50", icon: "text-blue-500", border: "hover:border-blue-300" },
-  scale: { bg: "bg-indigo-50", icon: "text-indigo-500", border: "hover:border-indigo-300" },
+const ACCENT_MAP: Record<string, { border: string; iconBg: string; iconColor: string }> = {
+  heart:     { border: "#e8857a", iconBg: "#fdf0ee", iconColor: "#c05a52" },
+  shield:    { border: "#d4845a", iconBg: "#fef3ec", iconColor: "#b8622e" },
+  wallet:    { border: "#c8a83a", iconBg: "#fdf8ec", iconColor: "#9e7e1e" },
+  home:      { border: "#4e7d62", iconBg: "#eef7f0", iconColor: "#2d5443" },
+  baby:      { border: "#c87ab0", iconBg: "#fdf0f9", iconColor: "#a0508c" },
+  calendar:  { border: "#7a7ec8", iconBg: "#f0f0fd", iconColor: "#4e52a0" },
+  globe:     { border: "#4a9e9e", iconBg: "#eef7f7", iconColor: "#2d7070" },
+  briefcase: { border: "#5a86c8", iconBg: "#eef3fd", iconColor: "#2e5ea0" },
+  scale:     { border: "#7a7a9e", iconBg: "#f2f2f9", iconColor: "#505078" },
 };
+
+const DEFAULT_ACCENT = { border: "var(--forest-400)", iconBg: "var(--forest-100)", iconColor: "var(--forest-700)" };
 
 export default function CategoryCard({ category }: { category: Category }) {
   const Icon = ICON_MAP[category.icon] ?? Heart;
-  const colors = COLOR_MAP[category.icon] ?? { bg: "bg-slate-50", icon: "text-slate-500", border: "hover:border-slate-300" };
+  const accent = ACCENT_MAP[category.icon] ?? DEFAULT_ACCENT;
 
   return (
     <Link
       href={`/kategorie/${category.slug}`}
-      className={`group flex flex-col gap-3 p-4 bg-white border-2 border-slate-100 ${colors.border} rounded-2xl shadow-sm hover:shadow-md transition-all focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2`}
+      className="cat-card group focus-visible:outline-none"
+      style={{
+        borderLeft: `3px solid ${accent.border}`,
+      }}
     >
-      <div className={`w-10 h-10 ${colors.bg} rounded-xl flex items-center justify-center`}>
-        <Icon className={`h-5 w-5 ${colors.icon}`} aria-hidden="true" />
+      <div
+        className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+        style={{ background: accent.iconBg }}
+      >
+        <Icon
+          className="h-4 w-4 transition-transform group-hover:scale-110"
+          style={{ color: accent.iconColor }}
+          aria-hidden="true"
+        />
       </div>
       <div>
-        <h3 className="font-semibold text-slate-800 text-sm leading-snug group-hover:text-blue-700 transition-colors">
+        <h3
+          className="font-semibold text-sm leading-snug mb-1"
+          style={{
+            color: "var(--forest-800)",
+            fontFamily: "var(--font-lora, 'Lora'), Georgia, serif",
+          }}
+        >
           {category.title}
         </h3>
-        <p className="text-slate-500 text-xs mt-1 leading-relaxed">{category.blurb}</p>
+        <p className="text-xs leading-relaxed" style={{ color: "var(--forest-500)" }}>
+          {category.blurb}
+        </p>
       </div>
     </Link>
   );
