@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --version && npm --version && npx --version 2>&1)",
+      "Bash(gh repo:*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --no-src-dir --import-alias \"@/*\" --no-git --yes 2>&1)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --no-src-dir --import-alias \"@/*\" --no-git --yes --force 2>&1 | head -50)",
+      "Read(//c/Users/info/Documents/Projects/**)",
+      "Bash(npx create-next-app@latest hibll2 --typescript --tailwind --app --no-src-dir --import-alias \"@/*\" --no-git --yes)",
+      "Bash(cp -r /c/Users/info/Documents/Projects/hibll2/. /c/Users/info/Documents/Projects/hibll/ && echo \"done\")",
+      "Bash(cp -r /c/Users/info/Documents/Projects/hibll2/app /c/Users/info/Documents/Projects/hibll/ && cp -r /c/Users/info/Documents/Projects/hibll2/public /c/Users/info/Documents/Projects/hibll/ && cp /c/Users/info/Documents/Projects/hibll2/package-lock.json /c/Users/info/Documents/Projects/hibll/ && echo \"done\")",
+      "Bash(ls /c/Users/info/Documents/Projects/hibll/*.ts /c/Users/info/Documents/Projects/hibll/*.mjs 2>/dev/null)",
+      "Bash(npm install:*)",
+      "Bash(npx shadcn@latest init --yes --defaults 2>&1 | tail -20 || echo \"shadcn init failed, continuing\")"
+    ]
+  }
+}
