@@ -6,13 +6,13 @@ export interface Category {
 }
 
 export const CATEGORIES: Category[] = [
-  { slug: "gesundheit-psyche", title: "Gesundheit & Psyche", blurb: "Krise, Sucht, HIV, erste Hilfe für die Seele.", icon: "heart" },
-  { slug: "gewalt-schutz", title: "Gewalt & Schutz", blurb: "Sicher bleiben, Schutz bekommen, anonym sprechen.", icon: "shield" },
-  { slug: "finanzen-schulden", title: "Finanzen & Schulden", blurb: "Schulden ordnen, Beratung finden, erste Schritte.", icon: "wallet" },
-  { slug: "wohnen", title: "Wohnen & Obdachlosigkeit", blurb: "Akut übernachten, Wege zurück in die Wohnung.", icon: "home" },
-  { slug: "familie", title: "Schwangerschaft & Familie", blurb: "Beratung, Leistungen, rechtliche Fragen.", icon: "baby" },
-  { slug: "alter-pflege", title: "Alter & Pflege", blurb: "Pflege zu Hause, Pflegegrad, Entlastung.", icon: "calendar" },
-  { slug: "migration", title: "Migration & Ankommen", blurb: "Aufenthalt, Sprache, Arbeit – erste Schritte.", icon: "globe" },
+  { slug: "gesundheit-psyche", title: "Gesundheit & Psyche", blurb: "Mit jemandem sprechen. Erste Schritte für die Seele.", icon: "heart" },
+  { slug: "gewalt-schutz", title: "Gewalt & Schutz", blurb: "Sicher bleiben. Anonym Hilfe holen.", icon: "shield" },
+  { slug: "finanzen-schulden", title: "Finanzen & Schulden", blurb: "Post sortieren. Kostenlose Beratung finden.", icon: "wallet" },
+  { slug: "wohnen", title: "Wohnen & Obdachlosigkeit", blurb: "Heute einen Ort finden. Danach weitersehen.", icon: "home" },
+  { slug: "familie", title: "Schwangerschaft & Familie", blurb: "Beratung finden. Leistungen klären.", icon: "baby" },
+  { slug: "alter-pflege", title: "Alter & Pflege", blurb: "Pflege klären. Entlastung suchen.", icon: "calendar" },
+  { slug: "migration", title: "Migration & Ankommen", blurb: "Aufenthalt, Sprache, Arbeit – den nächsten Schritt.", icon: "globe" },
   { slug: "arbeit", title: "Arbeit & Ausbildung", blurb: "Arbeitslosigkeit, Bewerbung, Umschulung.", icon: "briefcase" },
-  { slug: "justiz", title: "Justiz & Haftumfeld", blurb: "Unterstützung für Betroffene & Angehörige.", icon: "scale" }
+  { slug: "justiz", title: "Justiz & Haftumfeld", blurb: "Unterstützung für Betroffene und Angehörige.", icon: "scale" },
 ];

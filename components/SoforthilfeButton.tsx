@@ -10,11 +10,13 @@ export default function SoforthilfeButton() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="sos-float-btn animate-sos-pulse fixed bottom-6 right-4 sm:bottom-8 sm:right-8 z-50 flex items-center gap-2 font-semibold text-sm text-white rounded-full"
+        className="sos-float-btn fixed z-50 flex items-center gap-2 font-semibold text-sm text-white rounded-full min-h-12"
         style={{
           paddingInline: "1.125rem",
           paddingBlock: "0.75rem",
-          boxShadow: "0 4px 20px rgba(176,58,46,0.4)",
+          right: "max(1rem, env(safe-area-inset-right))",
+          bottom: "max(1.5rem, env(safe-area-inset-bottom))",
+          boxShadow: "0 4px 16px rgba(176,58,46,0.28)",
         }}
         aria-label="Soforthilfe öffnen"
       >

@@ -296,7 +296,8 @@
   margin-top: 0.5rem;
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 0.375rem 0.625rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   color: var(--forest-700);
   background: var(--forest-100);
@@ -331,9 +332,30 @@
 }
 
 /* SOS button hover */
+a, button, [role="button"] {
+  cursor: pointer;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 80;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--forest-800);
+  color: var(--cream-50);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
 .sos-float-btn {
   background: var(--sos);
   transition: background 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
 }
 .sos-float-btn:hover {
   background: var(--sos-dark);
@@ -356,21 +378,23 @@
 /* Checkbox */
 .check-btn {
   flex-shrink: 0;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 50%;
   border: 2px solid var(--forest-300);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: border-color 0.15s ease, background 0.15s ease;
-  margin-top: 0.125rem;
+  margin-top: 0;
+  cursor: pointer;
 }
 .check-btn:not(.is-checked):hover {
   border-color: var(--forest-500);
 }
 .check-btn.is-checked {
   background: var(--forest-600);
+  box-shadow: none;
   border-color: var(--forest-600);
   color: white;
 }

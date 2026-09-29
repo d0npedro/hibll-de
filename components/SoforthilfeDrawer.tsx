@@ -2,6 +2,8 @@
 import { useEffect, useRef } from "react";
 import { X, Phone, ExternalLink } from "lucide-react";
 import { SOFORTHILFE } from "@/data/sos";
+import VerifyBadge from "./VerifyBadge";
+import OrientationNote from "./OrientationNote";
 
 interface Props {
   open: boolean;
@@ -35,7 +37,6 @@ export default function SoforthilfeDrawer({ open, onClose }: Props) {
       aria-modal="true"
       aria-labelledby="sos-title"
     >
-      {/* Backdrop */}
       <div
         className="absolute inset-0 backdrop-blur-sm animate-fade-in"
         style={{ background: "rgba(10,26,19,0.6)" }}
@@ -43,7 +44,6 @@ export default function SoforthilfeDrawer({ open, onClose }: Props) {
         aria-hidden="true"
       />
 
-      {/* Panel */}
       <div
         className="relative w-full sm:max-w-md max-h-[88vh] overflow-y-auto animate-slide-up"
         style={{
@@ -52,12 +52,10 @@ export default function SoforthilfeDrawer({ open, onClose }: Props) {
           boxShadow: "0 -8px 48px rgba(10,26,19,0.25)",
         }}
       >
-        {/* Drag handle (mobile) */}
         <div className="flex justify-center pt-3 pb-1 sm:hidden" aria-hidden="true">
           <div className="w-10 h-1 rounded-full" style={{ background: "var(--forest-300)" }} />
         </div>
 
-        {/* Header */}
         <div
           className="sticky top-0 px-6 pt-5 pb-4"
           style={{
@@ -76,21 +74,20 @@ export default function SoforthilfeDrawer({ open, onClose }: Props) {
             <button
               ref={closeRef}
               onClick={onClose}
-              className="drawer-close p-2 rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+              className="drawer-close min-h-11 min-w-11 inline-flex items-center justify-center rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
               style={{ ["--tw-ring-offset-color" as string]: "var(--sos)" }}
               aria-label="Schließen"
             >
               <X className="h-4 w-4" aria-hidden="true" />
             </button>
           </div>
-          <p className="text-sm" style={{ color: "rgba(255,255,255,0.8)" }}>
-            Du bist nicht allein. Sofort erreichbare Hilfe:
+          <p className="text-sm" style={{ color: "rgba(255,255,255,0.85)" }}>
+            Du bist nicht allein. Hier sind sofort erreichbare Wege.
           </p>
         </div>
 
-        {/* Items */}
         <div className="p-4 space-y-2.5">
-          {SOFORTHILFE.map((item, i) => {
+          {SOFORTHILFE.map((item) => {
             const isTel = item.action.startsWith("tel:");
             return (
               <a
@@ -98,11 +95,10 @@ export default function SoforthilfeDrawer({ open, onClose }: Props) {
                 href={item.action}
                 target={isTel ? undefined : "_blank"}
                 rel={isTel ? undefined : "noopener noreferrer"}
-                className="card-sos flex items-center gap-4 p-4 animate-fade-up"
-                style={{ animationDelay: `${i * 0.06}s` }}
+                className="card-sos flex items-center gap-4 p-4 min-h-16"
               >
                 <div
-                  className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
+                  className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center"
                   style={{ background: "var(--sos-light)" }}
                 >
                   {isTel
@@ -111,12 +107,20 @@ export default function SoforthilfeDrawer({ open, onClose }: Props) {
                   }
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-sm leading-snug" style={{ color: "var(--forest-900)" }}>
-                    {item.title}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="font-semibold text-sm leading-snug" style={{ color: "var(--forest-900)" }}>
+                      {item.title}
+                    </div>
+                    <VerifyBadge status={item.verifyStatus} />
                   </div>
                   {item.description && (
-                    <div className="text-xs mt-0.5" style={{ color: "var(--forest-500)" }}>
+                    <div className="text-xs mt-0.5 leading-relaxed" style={{ color: "var(--forest-500)" }}>
                       {item.description}
+                    </div>
+                  )}
+                  {item.costNote && (
+                    <div className="text-xs mt-1" style={{ color: "var(--amber-dark)" }}>
+                      {item.costNote}
                     </div>
                   )}
                 </div>
@@ -125,10 +129,8 @@ export default function SoforthilfeDrawer({ open, onClose }: Props) {
           })}
         </div>
 
-        <div className="px-4 pb-8 text-center">
-          <p className="text-xs" style={{ color: "var(--forest-400)" }}>
-            Alle Nummern sind kostenlos oder günstig erreichbar
-          </p>
+        <div className="px-4 pb-8">
+          <OrientationNote compact />
         </div>
       </div>
     </div>

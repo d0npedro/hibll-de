@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Bookmark, BookmarkCheck, Phone, ExternalLink } from "lucide-react";
 import { getChecklist, setChecklistItem, addBookmark, removeBookmark, isBookmarked } from "@/lib/storage";
 import type { FlowStep } from "@/data/flows";
+import VerifyBadge from "./VerifyBadge";
 
 interface Props {
   step: FlowStep;
@@ -87,25 +88,28 @@ export default function StepCard({ step, flowSlug }: Props) {
           </p>
         )}
         {step.action && !checked && (
-          <a
-            href={step.action.href}
-            target={isTel ? undefined : "_blank"}
-            rel={isTel ? undefined : "noopener noreferrer"}
-            className="step-action"
-          >
-            {isTel
-              ? <Phone className="h-3 w-3" aria-hidden="true" />
-              : <ExternalLink className="h-3 w-3" aria-hidden="true" />
-            }
-            {step.action.label}
-          </a>
+          <div className="flex flex-wrap items-center gap-2 mt-1">
+            <a
+              href={step.action.href}
+              target={isTel ? undefined : "_blank"}
+              rel={isTel ? undefined : "noopener noreferrer"}
+              className="step-action min-h-11"
+            >
+              {isTel
+                ? <Phone className="h-3.5 w-3.5" aria-hidden="true" />
+                : <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+              }
+              {step.action.label}
+            </a>
+            {step.action.verifyStatus && <VerifyBadge status={step.action.verifyStatus} />}
+          </div>
         )}
       </div>
 
       {/* Bookmark */}
       <button
         onClick={handleBookmark}
-        className={`bookmark-btn${bookmarked ? " is-active" : ""}`}
+        className={`bookmark-btn min-h-11 min-w-11 inline-flex items-center justify-center${bookmarked ? " is-active" : ""}`}
         aria-label={bookmarked ? `${step.title} aus der Merkliste entfernen` : `${step.title} zur Merkliste hinzufügen`}
         aria-pressed={bookmarked}
       >

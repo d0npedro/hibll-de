@@ -33,6 +33,9 @@ export function setChecklistItem(stepId: string, checked: boolean): void {
   const current = getChecklist();
   current[stepId] = checked;
   safeSetItem(CHECKLIST_KEY, JSON.stringify(current));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("hibll-checklist"));
+  }
 }
 
 export interface BookmarkItem {

@@ -1,9 +1,11 @@
 import { Phone, ExternalLink } from "lucide-react";
 import { SOFORTHILFE } from "@/data/sos";
+import VerifyBadge from "@/components/VerifyBadge";
+import OrientationNote from "@/components/OrientationNote";
 
 export const metadata = {
   title: "Soforthilfe – hibll.de",
-  description: "Sofortige Hilfe bei akuten Krisen. Kostenlose Hotlines und Online-Beratung.",
+  description: "Sofort erreichbare Nummern bei akuter Gefahr. Orientierung, kein Ersatz der Institution.",
 };
 
 export default function SosPage() {
@@ -24,14 +26,15 @@ export default function SosPage() {
           Soforthilfe
         </h1>
         <p
-          className="text-sm leading-relaxed italic"
+          className="text-sm leading-relaxed italic mb-4"
           style={{
             color: "var(--forest-600)",
             fontFamily: "var(--font-lora, 'Lora'), Georgia, serif",
           }}
         >
-          Du bist nicht allein. Sofort erreichbare Angebote.
+          Du bist nicht allein. Hier sind sofort erreichbare Wege.
         </p>
+        <OrientationNote />
       </header>
 
       <div className="space-y-3">
@@ -43,7 +46,7 @@ export default function SosPage() {
               href={item.action}
               target={isTel ? undefined : "_blank"}
               rel={isTel ? undefined : "noopener noreferrer"}
-              className="card-sos flex items-center gap-4 p-5"
+              className="card-sos flex items-center gap-4 p-5 min-h-16"
             >
               <div
                 className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center"
@@ -55,17 +58,20 @@ export default function SosPage() {
                 }
               </div>
               <div className="flex-1">
-                <div
-                  className="font-semibold text-sm leading-snug"
-                  style={{
-                    color: "var(--forest-900)",
-                    fontFamily: "var(--font-lora, 'Lora'), Georgia, serif",
-                  }}
-                >
-                  {item.title}
+                <div className="flex flex-wrap items-center gap-2">
+                  <div
+                    className="font-semibold text-sm leading-snug"
+                    style={{
+                      color: "var(--forest-900)",
+                      fontFamily: "var(--font-lora, 'Lora'), Georgia, serif",
+                    }}
+                  >
+                    {item.title}
+                  </div>
+                  <VerifyBadge status={item.verifyStatus} />
                 </div>
                 {item.description && (
-                  <div className="text-xs mt-1" style={{ color: "var(--forest-500)" }}>
+                  <div className="text-xs mt-1 leading-relaxed" style={{ color: "var(--forest-500)" }}>
                     {item.description}
                   </div>
                 )}
@@ -75,8 +81,9 @@ export default function SosPage() {
         })}
       </div>
 
-      <p className="text-xs text-center mt-8" style={{ color: "var(--forest-400)" }}>
-        Alle Nummern sind kostenlos oder vom Festnetz günstig erreichbar.
+      <p className="text-xs text-center mt-8 leading-relaxed" style={{ color: "var(--forest-400)" }}>
+        112, 110 und die hier genannten 0800-/116-Nummern sind kostenlos.
+        Andere Angebote können Kosten haben – das steht am Eintrag.
       </p>
     </div>
   );

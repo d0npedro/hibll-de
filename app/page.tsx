@@ -1,6 +1,8 @@
 import SearchBox from "@/components/SearchBox";
 import CategoryCard from "@/components/CategoryCard";
 import HelpCard from "@/components/HelpCard";
+import CrisisStrip from "@/components/CrisisStrip";
+import OrientationNote from "@/components/OrientationNote";
 import { CATEGORIES } from "@/data/categories";
 import { FLOWS } from "@/data/flows";
 
@@ -69,6 +71,10 @@ export default function HomePage() {
           <div className="animate-fade-up delay-300">
             <SearchBox />
           </div>
+
+          <div className="animate-fade-up delay-400 mt-8 text-left">
+            <CrisisStrip />
+          </div>
         </div>
       </section>
 
@@ -119,7 +125,7 @@ export default function HomePage() {
             className="text-xl font-semibold mb-6"
             style={{ color: "var(--forest-800)" }}
           >
-            Beliebte Wege
+            Wege mit konkreten Schritten
           </h2>
           <div className="space-y-3">
             {popularFlows.map((flow, i) => (
@@ -164,10 +170,7 @@ export default function HomePage() {
           >
             Du bist nicht allein.
           </p>
-          <p className="text-sm leading-relaxed" style={{ color: "var(--forest-500)" }}>
-            Diese Seite gibt dir einen ruhigen Überblick und konkrete erste Schritte.
-            Kein Fachjargon. Keine Überforderung. Nur das, was jetzt wichtig ist.
-          </p>
+          <OrientationNote />
         </div>
       </section>
     </div>

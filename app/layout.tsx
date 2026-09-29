@@ -22,10 +22,10 @@ const nunitoSans = Nunito_Sans({
 
 export const metadata: Metadata = {
   title: "hibll.de – Hilfe in besonderen Lebenslagen",
-  description: "Du bist nicht allein. Konkrete Hilfe und nächste Schritte in schwierigen Lebenssituationen.",
+  description: "Du bist nicht allein. Wir zeigen dir konkrete Schritte – Orientierung, kein Ersatz der Institution.",
   openGraph: {
     title: "hibll.de – Hilfe in besonderen Lebenslagen",
-    description: "Du bist nicht allein. Konkrete Hilfe und nächste Schritte in schwierigen Lebenssituationen.",
+    description: "Du bist nicht allein. Wir zeigen dir konkrete Schritte.",
     locale: "de_DE",
     type: "website",
   },
@@ -34,9 +34,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" className={`${lora.variable} ${nunitoSans.variable}`}>
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-dvh flex flex-col">
+        <a href="#main-content" className="skip-link">
+          Zum Inhalt springen
+        </a>
         <Header />
-        <main id="main-content" className="flex-1">
+        <main id="main-content" className="flex-1 pb-24">
           {children}
         </main>
         <Footer />

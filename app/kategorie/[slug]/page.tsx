@@ -6,6 +6,8 @@ import { FLOWS } from "@/data/flows";
 import { OFFERS } from "@/data/offers";
 import HelpCard from "@/components/HelpCard";
 import HotlineCard from "@/components/HotlineCard";
+import OrientationNote from "@/components/OrientationNote";
+import EmptyState from "@/components/EmptyState";
 
 export function generateStaticParams() {
   return CATEGORIES.map((c) => ({ slug: c.slug }));
@@ -23,9 +25,9 @@ export default async function KategoriePage({ params }: { params: Promise<{ slug
     <div className="max-w-2xl mx-auto px-4 py-8">
       <Link
         href="/"
-        className="back-link inline-flex items-center gap-1.5 text-xs font-medium mb-8 focus-visible:outline-none"
+        className="back-link inline-flex items-center gap-1.5 text-sm font-medium mb-8 min-h-11 focus-visible:outline-none"
       >
-        <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
         Zurück zur Übersicht
       </Link>
 
@@ -37,14 +39,15 @@ export default async function KategoriePage({ params }: { params: Promise<{ slug
           {category.title}
         </h1>
         <p
-          className="text-sm leading-relaxed italic"
+          className="text-sm leading-relaxed italic mb-4"
           style={{
             color: "var(--forest-600)",
             fontFamily: "var(--font-lora, 'Lora'), Georgia, serif",
           }}
         >
-          Du bist nicht allein. Hier sind erste Schritte und Hilfsangebote.
+          {category.blurb}
         </p>
+        <OrientationNote compact />
       </header>
 
       {flows.length > 0 && (
@@ -53,7 +56,7 @@ export default async function KategoriePage({ params }: { params: Promise<{ slug
             className="text-xs font-semibold uppercase tracking-wider mb-4"
             style={{ color: "var(--forest-500)", letterSpacing: "0.08em" }}
           >
-            Schritt-für-Schritt-Wege
+            Was du jetzt tun kannst
           </h2>
           <div className="space-y-3">
             {flows.map((flow) => (
@@ -75,7 +78,7 @@ export default async function KategoriePage({ params }: { params: Promise<{ slug
             className="text-xs font-semibold uppercase tracking-wider mb-4"
             style={{ color: "var(--forest-500)", letterSpacing: "0.08em" }}
           >
-            Hilfsangebote &amp; Hotlines
+            Hilfsangebote
           </h2>
           <div className="space-y-3">
             {offers.map((offer) => (
@@ -86,14 +89,18 @@ export default async function KategoriePage({ params }: { params: Promise<{ slug
       )}
 
       {flows.length === 0 && offers.length === 0 && (
-        <div className="text-center py-16">
-          <p className="text-sm" style={{ color: "var(--forest-500)" }}>
-            Für dieses Thema werden gerade Inhalte vorbereitet.
-          </p>
-          <p className="text-xs mt-2" style={{ color: "var(--forest-400)" }}>
-            Nutze den Button „Soforthilfe" für sofortige Unterstützung.
-          </p>
-        </div>
+        <EmptyState
+          title="Für dieses Thema fehlen noch geprüfte Inhalte."
+          description="Wir erfinden keine Schritte. Nutze die Soforthilfe, wenn du jetzt jemanden brauchst."
+          actionHref="/sos"
+          actionLabel="Zur Soforthilfe"
+        />
+      )}
+
+      {flows.length === 0 && offers.length > 0 && (
+        <p className="text-sm leading-relaxed mb-8" style={{ color: "var(--forest-500)" }}>
+          Einen Schritt-für-Schritt-Weg gibt es hier noch nicht. Die Einstiege oben sind vorhanden – unsichere sind mit „Stand prüfen“ gekennzeichnet.
+        </p>
       )}
     </div>
   );

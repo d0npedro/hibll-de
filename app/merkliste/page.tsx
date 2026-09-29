@@ -21,41 +21,68 @@ export default function MerklistePage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
       <header className="mb-8">
-        <h1 className="text-2xl font-bold text-slate-800 mb-2">Deine Merkliste</h1>
-        <p className="text-slate-500">Gespeicherte Schritte und Angebote</p>
+        <h1
+          className="text-2xl sm:text-3xl font-semibold mb-2"
+          style={{ color: "var(--forest-900)" }}
+        >
+          Deine Merkliste
+        </h1>
+        <p className="text-sm leading-relaxed" style={{ color: "var(--forest-500)" }}>
+          Gespeicherte Schritte bleiben nur in diesem Browser.
+        </p>
       </header>
 
-      {!loaded ? null : bookmarks.length === 0 ? (
+      {!loaded ? (
+        <p className="text-sm" style={{ color: "var(--forest-400)" }}>
+          Merkliste wird geladen…
+        </p>
+      ) : bookmarks.length === 0 ? (
         <EmptyState
-          title="Du hast noch nichts gespeichert."
-          description="Klicke auf das Lesezeichen-Symbol bei einem Schritt, um ihn hier zu speichern."
+          title="Noch nichts gespeichert."
+          description="Beim Lesezeichen an einem Schritt landet er hier. Du kannst jederzeit wieder löschen."
+          actionHref="/"
+          actionLabel="Thema wählen"
         />
       ) : (
         <ul className="space-y-3">
           {bookmarks.map((item) => {
             const isTel = item.href?.startsWith("tel:");
             return (
-              <li key={item.id} className="flex items-start gap-3 p-4 bg-white border-2 border-slate-100 rounded-2xl shadow-sm">
+              <li
+                key={item.id}
+                className="flex items-start gap-3 p-4 rounded-2xl"
+                style={{
+                  background: "#fff",
+                  border: "1.5px solid var(--forest-200)",
+                  boxShadow: "var(--shadow-warm-sm)",
+                }}
+              >
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-slate-800 text-sm">{item.title}</p>
+                  <p className="font-medium text-sm" style={{ color: "var(--forest-800)" }}>
+                    {item.title}
+                  </p>
                   {item.description && (
-                    <p className="text-slate-500 text-xs mt-1">{item.description}</p>
+                    <p className="text-xs mt-1 leading-relaxed" style={{ color: "var(--forest-500)" }}>
+                      {item.description}
+                    </p>
                   )}
                   {item.href && (
                     <a
                       href={item.href}
                       target={isTel ? undefined : "_blank"}
                       rel={isTel ? undefined : "noopener noreferrer"}
-                      className="inline-flex items-center gap-1 mt-2 text-xs text-blue-600 hover:text-blue-700 focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 rounded-sm"
+                      className="inline-flex items-center gap-1 mt-2 min-h-11 text-sm font-semibold"
+                      style={{ color: "var(--forest-700)" }}
                     >
-                      {isTel ? <Phone className="h-3 w-3" aria-hidden="true" /> : <ExternalLink className="h-3 w-3" aria-hidden="true" />}
+                      {isTel ? <Phone className="h-3.5 w-3.5" aria-hidden="true" /> : <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />}
                       {isTel ? "Anrufen" : "Link öffnen"}
                     </a>
                   )}
                 </div>
                 <button
                   onClick={() => handleRemove(item.id)}
-                  className="flex-shrink-0 p-2 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors focus-visible:outline-2 focus-visible:outline-red-500 focus-visible:outline-offset-2"
+                  className="flex-shrink-0 min-h-11 min-w-11 inline-flex items-center justify-center rounded-lg"
+                  style={{ color: "var(--forest-400)" }}
                   aria-label={`${item.title} aus der Merkliste entfernen`}
                 >
                   <Trash2 className="h-4 w-4" aria-hidden="true" />

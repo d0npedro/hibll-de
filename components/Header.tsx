@@ -7,16 +7,14 @@ export default function Header() {
       className="sticky top-0 z-40"
       style={{ background: "var(--forest-800)", borderBottom: "1px solid var(--forest-700)" }}
     >
-      <div className="max-w-4xl mx-auto px-4 flex items-center justify-between" style={{ height: "3.75rem" }}>
-        {/* Logo */}
+      <div className="max-w-4xl mx-auto px-4 flex items-center justify-between min-h-14">
         <Link
           href="/"
-          className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 rounded-sm"
-          style={{ ["--tw-ring-color" as string]: "var(--amber)" }}
+          className="flex items-center gap-2.5 group focus-visible:outline-none min-h-11 py-1 rounded-sm"
           aria-label="hibll.de – Startseite"
         >
           <span
-            className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110"
+            className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
             style={{ background: "var(--forest-600)" }}
             aria-hidden="true"
           >
@@ -30,7 +28,7 @@ export default function Header() {
           </span>
           <div className="flex flex-col leading-none">
             <span
-              className="font-semibold tracking-tight text-base transition-colors group-hover:text-white"
+              className="font-semibold tracking-tight text-base"
               style={{
                 fontFamily: "var(--font-lora, 'Lora'), Georgia, serif",
                 color: "var(--cream-100)",
@@ -47,29 +45,23 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Nav */}
         <nav aria-label="Hauptnavigation">
-          <ul className="flex items-center gap-1 sm:gap-2">
+          <ul className="flex items-center gap-1">
             <li>
               <Link
                 href="/merkliste"
-                className="nav-link-warm flex items-center gap-1.5 text-sm px-3 py-2 rounded-lg focus-visible:outline-none focus-visible:ring-2"
-                style={{ ["--tw-ring-color" as string]: "var(--amber)" }}
+                className="nav-link-warm flex items-center gap-1.5 text-sm min-h-11 px-3 rounded-lg focus-visible:outline-none"
               >
-                <Bookmark className="h-3.5 w-3.5" aria-hidden="true" />
+                <Bookmark className="h-4 w-4" aria-hidden="true" />
                 <span>Merkliste</span>
               </Link>
             </li>
             <li>
               <Link
                 href="/sos"
-                className="sos-nav-btn flex items-center gap-1.5 text-sm px-4 py-2 rounded-lg font-semibold focus-visible:outline-none focus-visible:ring-2"
-                style={{
-                  letterSpacing: "0.01em",
-                  ["--tw-ring-color" as string]: "var(--amber)",
-                }}
+                className="sos-nav-btn flex items-center gap-1.5 text-sm min-h-11 px-4 rounded-lg font-semibold focus-visible:outline-none"
               >
-                <Phone className="h-3.5 w-3.5" aria-hidden="true" />
+                <Phone className="h-4 w-4" aria-hidden="true" />
                 <span>Soforthilfe</span>
               </Link>
             </li>

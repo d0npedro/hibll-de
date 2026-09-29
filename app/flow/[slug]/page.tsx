@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FLOWS } from "@/data/flows";
 import { CATEGORIES } from "@/data/categories";
 import FlowClient from "./FlowClient";
+import OrientationNote from "@/components/OrientationNote";
 
 export function generateStaticParams() {
   return FLOWS.map((f) => ({ slug: f.slug }));
@@ -42,9 +43,10 @@ export default async function FlowPage({ params }: { params: Promise<{ slug: str
         >
           {flow.title}
         </h1>
-        <p className="text-sm leading-relaxed" style={{ color: "var(--forest-500)" }}>
+        <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--forest-500)" }}>
           {flow.description}
         </p>
+        <OrientationNote compact />
       </header>
 
       <FlowClient flow={flow} />

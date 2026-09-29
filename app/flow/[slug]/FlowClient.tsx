@@ -13,11 +13,16 @@ export default function FlowClient({ flow }: Props) {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const allSteps = flow.sections.flatMap((s) => s.steps);
-    const checklist = getChecklist();
-    const done = allSteps.filter((s) => checklist[`${flow.slug}__${s.id}`]).length;
-    setTotal(allSteps.length);
-    setProgress(done);
+    const refresh = () => {
+      const allSteps = flow.sections.flatMap((s) => s.steps);
+      const checklist = getChecklist();
+      const done = allSteps.filter((s) => checklist[`${flow.slug}__${s.id}`]).length;
+      setTotal(allSteps.length);
+      setProgress(done);
+    };
+    refresh();
+    window.addEventListener("hibll-checklist", refresh);
+    return () => window.removeEventListener("hibll-checklist", refresh);
   }, [flow]);
 
   const pct = total > 0 ? Math.round((progress / total) * 100) : 0;
