@@ -9,8 +9,13 @@ export default function MerklistePage() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    const updateBookmarks = () => setBookmarks(getBookmarks());
+
     setBookmarks(getBookmarks());
     setLoaded(true);
+
+    window.addEventListener("hibll-bookmarks", updateBookmarks);
+    return () => window.removeEventListener("hibll-bookmarks", updateBookmarks);
   }, []);
 
   const handleRemove = (id: string) => {

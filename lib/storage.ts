@@ -60,11 +60,17 @@ export function addBookmark(item: BookmarkItem): void {
   const current = getBookmarks();
   if (current.some((b) => b.id === item.id)) return;
   safeSetItem(BOOKMARKS_KEY, JSON.stringify([...current, item]));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("hibll-bookmarks"));
+  }
 }
 
 export function removeBookmark(id: string): void {
   const current = getBookmarks();
   safeSetItem(BOOKMARKS_KEY, JSON.stringify(current.filter((b) => b.id !== id)));
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("hibll-bookmarks"));
+  }
 }
 
 export function isBookmarked(id: string): boolean {
