@@ -44,11 +44,60 @@ vercel deploy --prod
 5. **Externe Links**: Alle Links auf externe Beratungsstellen regelmäßig prüfen
 6. **Kein echtes Backend**: Alle Daten sind statisch. Für echte Inhalte CMS integrieren.
 
+## Features
+
+- 🎯 **Intuitiver Flow**: Kategorien → Leitfäden → konkrete Schritte
+- 💾 **Lokale Persistenz**: Fortschritt und Lesezeichen nur im Browser (datenschutzfreundlich)
+- 📱 **Responsive Design**: Optimiert für Mobile und Desktop
+- ♿ **Barrierefreiheit**: ARIA-Labels, semantische HTML, Keyboard Navigation
+- 🔐 **Datenschutz**: Keine Server-Logs, keine Tracking, keine Cookies
+- 🌍 **Mehrsprachig vorbereitet**: Struktur für weitere Sprachen ausgelegt
+
 ## Struktur
 
 ```
 app/             # Next.js App Router Seiten
-components/      # Wiederverwendbare React-Komponenten
+components/      # Wiederverwendbare React-Komponenten (StepCard, CategoryCard, etc.)
 data/            # Statische Datendateien (Kategorien, Flows, Angebote)
-lib/             # Utilities (localStorage, etc.)
+lib/             # Utilities (localStorage mit Safe-Wrappers, etc.)
 ```
+
+## Bekannte Verbesserungen
+
+### Storage & Events (v1.1)
+- ✅ `addBookmark()` und `removeBookmark()` dispatchen jetzt "hibll-bookmarks" Event
+- ✅ Merkliste-Seite aktualisiert sich live, wenn Lesezeichen hinzugefügt/entfernt werden
+- ✅ Keine manuellen Seite-Aktualisierungen mehr nötig
+
+## Testing
+
+Für lokale manuelle Tests:
+
+```bash
+npm run dev
+# Browser auf http://localhost:3000
+# 1. Eine Kategorie auswählen
+# 2. Ein Leitfaden öffnen
+# 3. Schritte abhaken → Progress bar sollte sich bewegen
+# 4. Schritt mit Lesezeichen → zu /merkliste navigieren
+# 5. Neues Lesezeichen sollte sofort sichtbar sein
+# 6. Lesezeichen löschen → sollte sofort verschwinden
+```
+
+Keine automatisierten Tests vorhanden (statischer, dateibasierter Content).
+
+## Deployment Notes
+
+**Vor der ersten Produktion:**
+
+1. Alle `verifyStatus: "pruefen"` Links in `/data/flows.ts` mit aktuellen Quellen ersetzen
+2. Impressum, Datenschutz, Barrierefreiheit vollständig ausfüllen
+3. Notfallnummern (tel: Links) auf aktuelle Gültigkeit prüfen
+4. Mit Verbraucherzentralen / Hilfsorganisationen Links abstimmen
+5. Regelmäßige (monatliche) Link-Audits einplanen
+
+## Git & Commit History
+
+- Hauptbranch: `main`
+- Deployment: Vercel recommended (Next.js native support)
+- Keine Secrets in `.env` oder `node_modules/` committet
