@@ -16,9 +16,9 @@ export default function ImpressumPage() {
       </div>
 
       <LegalPlaceholder>
-        <strong>Platzhalter.</strong> Hier stehen noch keine Betreiberangaben.
-        Vor einem öffentlichen Betrieb müssen echte Angaben eingetragen und rechtlich geprüft werden.
-        Wir füllen das nicht mit erfundenen Daten.
+        <strong>Hinweis:</strong> Bei den hier dargestellten Diensten handelt es sich um
+        <strong>fiktive Angebote</strong>. Wir befinden uns in der Entwicklung; es werden derzeit
+        keine Leistungen verkauft. Die Website ist ein Prototyp.
       </LegalPlaceholder>
 
       <div className="space-y-6 text-sm leading-relaxed" style={{ color: "var(--forest-700)" }}>
@@ -27,9 +27,10 @@ export default function ImpressumPage() {
             Angaben gemäß § 5 TMG
           </h2>
           <p>
-            [Name des Betreibers]<br />
-            [Straße und Hausnummer]<br />
-            [PLZ und Ort]
+            Peter Henrichs<br />
+            Fronhofstraße 21<br />
+            50354 Hürth<br />
+            Deutschland
           </p>
         </section>
 
@@ -38,16 +39,19 @@ export default function ImpressumPage() {
             Kontakt
           </h2>
           <p>
-            E-Mail: [E-Mail-Adresse eintragen]<br />
-            Telefon: [Telefonnummer eintragen]
+            E-Mail: <a href="mailto:peter.henrichs@web.de">peter.henrichs@web.de</a><br />
+            Telefon: nicht angegeben
           </p>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--forest-800)" }}>
-            Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
+            Verantwortlich für journalistisch-redaktionelle Inhalte
           </h2>
-          <p>[Name und Anschrift der verantwortlichen Person – hier eintragen]</p>
+          <p>
+            Peter Henrichs, Anschrift wie oben – sofern Inhalte nach § 18 Abs. 2 MStV
+            redaktionell gestaltet werden.
+          </p>
         </section>
 
         <section>

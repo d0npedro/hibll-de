@@ -12,7 +12,7 @@ export default function BarrierefreiheitPage() {
       </h1>
 
       <LegalPlaceholder>
-        <strong>Platzhalter.</strong> Diese Erklärung muss vor dem öffentlichen Betrieb geprüft und ergänzt werden.
+        <strong>Hinweis:</strong> Diese Website befindet sich im Aufbau. Eine systematische Barrierefreiheitsprüfung steht noch aus; diese Erklärung wird vor einem öffentlichen Betrieb ergänzt.
         Kontakt für Barriere-Meldungen bleibt leer, bis echte Daten vorliegen.
       </LegalPlaceholder>
 
@@ -45,7 +45,7 @@ export default function BarrierefreiheitPage() {
           <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--forest-800)" }}>
             Bekannte Einschränkungen
           </h2>
-          <p>[Bekannte Einschränkungen hier eintragen, falls vorhanden]</p>
+          <p>Bekannte Einschränkungen werden hier ergänzt, sobald die Prüfung vorliegt.</p>
         </section>
 
         <section>
@@ -53,7 +53,7 @@ export default function BarrierefreiheitPage() {
             Feedback und Kontakt
           </h2>
           <p>
-            Wenn du eine Barriere findest: [Kontakt-E-Mail eintragen]
+            Wenn du eine Barriere findest: <a href="mailto:peter.henrichs@web.de">peter.henrichs@web.de</a>
           </p>
         </section>
       </div>

@@ -16,7 +16,7 @@ export default function DatenschutzPage() {
       </div>
 
       <LegalPlaceholder>
-        <strong>Platzhalter.</strong> Vor dem öffentlichen Betrieb braucht es eine rechtlich geprüfte Erklärung.
+        <strong>Hinweis:</strong> Bei den hier dargestellten Diensten handelt es sich um <strong>fiktive Angebote</strong>. Wir befinden uns in der Entwicklung; Kunden- oder Gästedaten werden derzeit nicht verarbeitet.
         Hosting-Angaben und Verantwortliche bleiben leer, bis der Mensch sie einträgt.
       </LegalPlaceholder>
 
@@ -25,7 +25,7 @@ export default function DatenschutzPage() {
           <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--forest-800)" }}>
             1. Verantwortliche Stelle
           </h2>
-          <p>[Name und Anschrift des Betreibers – hier eintragen]</p>
+          <p>Peter Henrichs, Fronhofstraße 21, 50354 Hürth, Deutschland. E-Mail: <a href="mailto:peter.henrichs@web.de">peter.henrichs@web.de</a></p>
         </section>
 
         <section>
@@ -43,7 +43,7 @@ export default function DatenschutzPage() {
           <h2 className="text-lg font-semibold mb-2" style={{ color: "var(--forest-800)" }}>
             3. Hosting und Server-Logs
           </h2>
-          <p>[Angaben zum Hosting-Anbieter – hier eintragen. Nicht erraten.]</p>
+          <p>Hosting: Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. Ein Auftragsverarbeitungsvertrag ist für den Produktivbetrieb abzuschließen.</p>
         </section>
 
         <section>
