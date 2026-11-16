@@ -1,7 +1,20 @@
 import type { NextConfig } from "next";
 
+// Sicherheitsheader. Eine CSP fehlt bewusst: Next.js injiziert Inline-Skripte fuer die
+// Hydration, eine strikte Policy braucht Nonces ueber Middleware - das ist ein eigener Schritt
+// mit Testdurchlauf, kein Nebenbei-Fix.
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+];
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  async headers() {
+    return [{ source: "/(.*)", headers: securityHeaders }];
+  },
 };
 
 export default nextConfig;
