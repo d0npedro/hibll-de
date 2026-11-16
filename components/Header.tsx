@@ -7,7 +7,7 @@ export default function Header() {
       className="sticky top-0 z-40"
       style={{ background: "var(--forest-800)", borderBottom: "1px solid var(--forest-700)" }}
     >
-      <div className="max-w-4xl mx-auto px-4 flex items-center justify-between min-h-14">
+      <div className="max-w-4xl mx-auto px-4 flex flex-wrap items-center justify-between gap-x-2 min-h-14">
         <Link
           href="/"
           className="flex items-center gap-2.5 group focus-visible:outline-none min-h-11 py-1 rounded-sm"
